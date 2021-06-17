@@ -170,13 +170,15 @@ main(int argc, char *argv[]) {
     PointToPointHelper pointToPoint;
     // Set the Data rate and link delay
     // < ---- TODO  Task 7.1.1: Add topology ---- >
-
+   pointToPoint.SetChannelAttribute("Delay", StringValue("10ms"));
+   pointToPoint.SetChannelAttribute("DataRate",StringValue("5Mbps"));
     // Create the link between the two nodes
     NetDeviceContainer devices;
     // < ---- TODO  Task 7.1.1: Add topology ---- >
-
+    devices = pointToPoint.Install(nodes);
     // Add failure model to the link
     Ptr <RateErrorModel> em = CreateObject<RateErrorModel>();
+    em.SetRate(.000001);
     // < ---- TODO  Task 7.1.1: Set error rate ---- >
 
     /* -------- END TOPOLOGY -------- */
